@@ -1,0 +1,54 @@
+class Main {
+
+    public static void main(String[] args) {
+        // generate random number within 1 to 100
+        int randomNumber = (int) (Math.random() * 100) + 1;
+
+        System.out.println("==========Welcome to the game of Guessing Number==========");
+        System.out.println("         \nI am thinking of a number between 1 and 100    ");
+        System.out.println("         \nTry to guess it in as few attempts as possible ");
+        System.out.println("         \nYou have max 5 attempts to guess the number    ");
+        System.out.println("\n\nLet's start the game..........");
+
+        System.out.println("\nEnter your guess: ");
+        int guess = Integer.parseInt(System.console().readLine());
+
+        int count = 1;
+        while (count < 5) {
+            if (guess == randomNumber) {
+                ++count;
+                System.out.println(
+                        "\nCongratulation! You guessed the number in " + count + " attempts");
+                break;
+            } else if (guess > randomNumber) {
+                ++count;
+                System.out.println("\nYour guess is too high");
+                System.out.println("\nYou have more " + (6 - count) + " attempts left");
+                System.out.println("\nEnter your guess: ");
+                guess = Integer.parseInt(System.console().readLine());
+            } else if (guess < randomNumber) {
+                ++count;
+                System.out.println("\nYour guess is too low");
+                System.out.println("\nYou have more " + (6 - count) + " attempts left");
+                System.out.println("\nEnter your guess: ");
+                guess = Integer.parseInt(System.console().readLine());
+            } else {
+                System.out.println("\nInvalid input");
+            }
+            if (count == 5) {
+                System.out.println("\nYou have used all your attempts");
+                System.out.println("\nThe number was " + randomNumber);
+                System.out.println("\nBetter luck next time");
+
+                System.out.println("\nDo you want to play again? (y/n)");
+                String playAgain = System.console().readLine();
+                if (playAgain.equals("y")) {
+                    main(args);
+                } else {
+                    System.out.println("\nThank you for playing the game");
+                    break;
+                }
+            }
+        } // end of while loop
+    }
+}
